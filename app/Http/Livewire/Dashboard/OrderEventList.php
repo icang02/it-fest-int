@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Models\PengelolaOrder;
-use App\Models\TourPlace;
-use App\Models\UserOrder;
+use App\Models\Event;
 use Livewire\Component;
+use App\Models\PengelolaEventOrder;
+use App\Models\UserEventOrder;
 
-class OrderList extends Component
+class OrderEventList extends Component
 {
     protected $listeners = ['action', 'render'];
     public $orderId;
@@ -20,21 +20,21 @@ class OrderList extends Component
 
     public function getDataOrder()
     {
-        return PengelolaOrder::where('user_id', auth()->user()->id)->paginate(10);
+        return PengelolaEventOrder::where('user_id', auth()->user()->id)->paginate(10);
     }
 
     public function confirmOrder($orderId)
     {
-        $userOrder = UserOrder::find($orderId);
+        $userOrder = UserEventOrder::find($orderId);
         $userOrder->update([
             'status' => 'selesai',
         ]);
-        $pengelolaOrder = PengelolaOrder::find($orderId);
+        $pengelolaOrder = PengelolaEventOrder::find($orderId);
         $pengelolaOrder->update([
             'status' => 'selesai',
         ]);
 
-        $place = TourPlace::find($userOrder->tour_place_id);
+        $place = Event::find($userOrder->event_id);
         $place->update(['ticket_stock' => $place->ticket_stock - $userOrder->quantity]);
 
         if ($userOrder && $pengelolaOrder) {
@@ -48,10 +48,10 @@ class OrderList extends Component
 
     public function cancelOrder($orderId)
     {
-        $userOrder = UserOrder::find($orderId)->update([
+        $userOrder = UserEventOrder::find($orderId)->update([
             'status' => 'gagal',
         ]);
-        $pengelolaOrder = PengelolaOrder::find($orderId)->update([
+        $pengelolaOrder = PengelolaEventOrder::find($orderId)->update([
             'status' => 'gagal',
         ]);
 
@@ -79,8 +79,8 @@ class OrderList extends Component
 
     public function action()
     {
-        $userOrder = UserOrder::find($this->orderId)->delete();
-        $pengelolaOrder = PengelolaOrder::find($this->orderId)->delete();
+        $userOrder = UserEventOrder::find($this->orderId)->delete();
+        $pengelolaOrder = PengelolaEventOrder::find($this->orderId)->delete();
 
         if ($userOrder && $pengelolaOrder) {
             $this->dispatchBrowserEvent('swal:modal', [
@@ -92,13 +92,12 @@ class OrderList extends Component
         }
     }
 
-
     public function render()
     {
-        return view('livewire.dashboard.order-list', [
+        return view('livewire.dashboard.order-event-list', [
             'orderList' => $this->getDataOrder(),
         ])->extends('layouts.dashboard', [
-            'title' => 'Wisata Order'
+            'title' => 'Event Order'
         ])->section('main-content');
     }
 }

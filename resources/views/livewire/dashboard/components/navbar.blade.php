@@ -7,19 +7,10 @@
   </div>
 
   <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-    <!-- Search -->
-    {{-- <div class="navbar-nav align-items-center">
-      <div class="nav-item d-flex align-items-center">
-        <i class="bx bx-search fs-4 lh-0"></i>
-        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
-          aria-label="Search..." />
-      </div>
-    </div> --}}
-    <!-- /Search -->
 
     {{-- Icon Cart --}}
     <ul class="navbar-nav flex-row align-items-center ms-auto">
-      @if (Gate::check('pengunjung') || Gate::check('pengelola'))
+      {{-- @if (Gate::check('pengelola'))
         <li class="nav-item lh-1 me-3">
           <a class="d-flex align-items-center fw-bold color-primary" href="{{ route('orderList') }}">
             Order
@@ -28,7 +19,7 @@
             </span>
           </a>
         </li>
-      @endif
+      @endif --}}
 
       <!-- User -->
       <li class="nav-item navbar-dropdown dropdown-user dropdown">

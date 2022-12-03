@@ -45,6 +45,7 @@ class OrderPage extends Component
 
     public function action()
     {
+        dd($this->event->user_id);
         $no_order = rand(1, 10000);
 
         $userOrder = UserEventOrder::create([
@@ -55,9 +56,10 @@ class OrderPage extends Component
             'total_payment' => $this->total,
             'status' => 'pending',
         ]);
+
         $pengelolaOrder = PengelolaEventOrder::create([
             'no_order' => $no_order,
-            'user_id' => auth()->user()->id,
+            'user_id' => $this->event->user_id,
             'event_id' => $this->event->id,
             'quantity' => $this->qty,
             'total_payment' => $this->total,

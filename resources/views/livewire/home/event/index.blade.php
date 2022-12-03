@@ -1,7 +1,7 @@
 <section class="py-0">
 
   <div
-    style="background-image: url({{ asset('sneat/img/kategori/cover-wisata.jpg') }}); background-size: cover; background-position: center; height: 450px;">
+    style="background-image: url({{ asset('sneat/img/kategori/bg-event.jpg') }}); background-size: cover; background-position: center; height: 450px;">
   </div>
 
   <div class="container position-relative">

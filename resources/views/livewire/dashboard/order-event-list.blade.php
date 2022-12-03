@@ -1,5 +1,5 @@
 <div class="container-xxl flex-grow-1 container-p-y">
-  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Transaction /</span> Wisata Order </h4>
+  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Transaction /</span> Event Order </h4>
 
   @if ($orderList->count() != 0)
     <div class="card">
@@ -25,7 +25,7 @@
                   <i class="fab fa-angular fa-lg text-danger me-3"></i>
                   <strong> {{ $order->no_order }} </strong>
                 </td>
-                <td> {{ $order->tour_place->name }} </td>
+                <td> {{ $order->event->name }} </td>
                 <td class="text-end">
                   Rp {{ number_format($order->total_payment, 0, ',', '.') }}
                 </td>
@@ -63,9 +63,7 @@
                     @if ($order->image_tf == null) disabled @else data-bs-target="#bukti-tf{{ $order->id }}" @endif>Bukti
                     Transfer</button>
 
-                  <button
-                    @if ($order->status == 'pending' && $order->image_tf != null) disabled @else wire:click="confirmDelete({{ $order->id }}, 'wisata')" @endif
-                    class="btn btn-sm btn-danger">
+                  <button wire:click="confirmDelete({{ $order->id }}, 'wisata')"class="btn btn-sm btn-danger">
                     Hapus
                   </button>
                 </td>
@@ -83,9 +81,9 @@
                     </div>
                     <div class="modal-body text-start">
                       <div class="row mb-1">
-                        <h6 style="width: 40%;">Nama wisata</h6>
+                        <h6 style="width: 40%;">Nama event</h6>
                         <h6 class="text-dark lead" style="width: 60%;">: &nbsp;
-                          {{ $order->tour_place->name }}</h6>
+                          {{ $order->event->name }}</h6>
                       </div>
                       <div class="row mb-1">
                         <h6 style="width: 40%;">Tanggal pemesanan</h6>
@@ -102,7 +100,7 @@
                       <div class="row mb-1">
                         <h6 style="width: 40%;">Harga Tiket</h6>
                         <h6 class="text-dark lead" style="width: 60%;">: &nbsp;
-                          Rp {{ number_format($order->tour_place->price, 0, ',', '.') }}
+                          Rp {{ number_format($order->event->price, 0, ',', '.') }}
                         </h6>
                       </div>
                       <div class="row mb-1">
@@ -118,11 +116,11 @@
 
                       @if ($order->image_tf == null && $order->status == 'pending')
                         <button onclick="confirm('Batalkan order?') || event.stopImmediatePropagation()"
-                          wire:click="cancelOrder({{ $order->id }}, 'wisata')" type="button" class="btn btn-danger"
+                          wire:click="cancelOrder({{ $order->id }}, 'event')" type="button" class="btn btn-danger"
                           data-bs-dismiss="modal">Batalkan
                           order</button>
                       @elseif ($order->status == 'selesai')
-                        <form action="{{ url("/invoice/$order->id/wisata") }}" method="post">
+                        <form action="{{ url("/invoice/$order->id/event") }}" method="post">
                           @csrf
                           <button type="submit" class="btn btn-success">Unduh Invoice</button>
                         </form>
@@ -140,7 +138,7 @@
                   <div class="modal-content">
 
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Bukti transfer</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Evidence of transfer</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

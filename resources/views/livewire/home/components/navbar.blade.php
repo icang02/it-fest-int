@@ -22,7 +22,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('my-profile*') ?: 'text-600' }}" href="#">My Profile
+            <a class="nav-link {{ request()->is('my-profile*') ?: 'text-600' }}" href="{{ url('/my-profile') }}">My
+              Profile
             </a>
           </li>
         @endcan

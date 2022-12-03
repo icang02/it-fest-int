@@ -17,6 +17,7 @@ use App\Http\Livewire\Home\Wisata\Index as WisataIndex;
 use App\Http\Livewire\Dashboard\Index;
 use App\Http\Livewire\Dashboard\Order;
 use App\Http\Livewire\Dashboard\OrderDetail;
+use App\Http\Livewire\Dashboard\OrderEventList;
 use App\Http\Livewire\Dashboard\OrderList;
 use App\Http\Livewire\Dashboard\Profile;
 use App\Http\Livewire\Dashboard\Wisata;
@@ -29,6 +30,7 @@ use App\Http\Livewire\Home\Index as HomeIndex;
 use App\Http\Livewire\Home\Wisata\Detail as DetailWisata;
 use App\Http\Livewire\Home\Wisata\OrderPage;
 use App\Http\Livewire\Home\Event\OrderPage as OrderEventPage;
+use App\Http\Livewire\Home\MyProfile;
 use App\Http\Livewire\Home\Order\Index as OrderIndex;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -72,11 +74,18 @@ Route::get('/semua-event/order/{eventId}', OrderEventPage::class)->can('pengunju
 // Home Pengunjung - Halaman Order
 Route::get('/semua-order', OrderIndex::class)->can('pengunjung');
 
+// Home Pengunjnug - Halaman My Profile
+Route::get('/my-profile', MyProfile::class)->can('pengunjung');
+
 // Dashboard Pengelola - Halaman Event
 Route::get('/pengelola-event', PengelolaIndex::class);
 Route::get('/pengelola-event/add', PengelolaAdd::class);
 Route::get('/pengelola-event/{eventId}', PengelolaDetail::class);
 Route::get('/pengelola-event/edit/{eventId}', PengelolaEdit::class);
+
+// Dashboard Pengelola - Halaman Event Order
+Route::get('/event-order', OrderEventList::class);
+
 
 
 

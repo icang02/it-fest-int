@@ -63,9 +63,10 @@ class OrderPage extends Component
             'total_payment' => $this->paymentTotal,
             'status' => 'pending',
         ]);
+
         $pengelolaOrder = PengelolaOrder::create([
             'no_order' => rand(1, 10000),
-            'user_id' => auth()->user()->id,
+            'user_id' => $this->wisata->user_id,
             'tour_place_id' => $this->wisata->id,
             'quantity' => $this->qty,
             'total_payment' => $this->paymentTotal,

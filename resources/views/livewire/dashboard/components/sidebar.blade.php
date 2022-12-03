@@ -66,7 +66,7 @@
       </li>
     @endif
 
-    @if (Gate::check('pengunjung') || Gate::check('pengelola'))
+    @if (Gate::check('pengelola'))
       <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Transaction</span>
       </li>
@@ -74,7 +74,16 @@
         <a href="{{ route('orderList') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-detail"></i>
           <div data-i18n="Analytics">
-            {{ Auth()->user()->role_id == 2 ? 'Order' : 'My Order' }}
+            Wisata
+          </div>
+        </a>
+      </li>
+
+      <li class="menu-item {{ request()->is('event-order*') ? 'active' : '' }}">
+        <a href="{{ url('/event-order') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-detail"></i>
+          <div data-i18n="Analytics">
+            Event
           </div>
         </a>
       </li>
