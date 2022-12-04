@@ -6,6 +6,7 @@ use App\Models\Event;
 use Livewire\Component;
 use App\Models\PengelolaEventOrder;
 use App\Models\UserEventOrder;
+use Illuminate\Support\Facades\Storage;
 
 class OrderEventList extends Component
 {
@@ -26,13 +27,10 @@ class OrderEventList extends Component
     public function confirmOrder($orderId)
     {
         $userOrder = UserEventOrder::find($orderId);
-        $userOrder->update([
-            'status' => 'selesai',
-        ]);
         $pengelolaOrder = PengelolaEventOrder::find($orderId);
-        $pengelolaOrder->update([
-            'status' => 'selesai',
-        ]);
+
+        $userOrder->update(['status' => 'selesai']);
+        $pengelolaOrder->update(['status' => 'selesai']);
 
         $place = Event::find($userOrder->event_id);
         $place->update(['ticket_stock' => $place->ticket_stock - $userOrder->quantity]);
@@ -67,8 +65,8 @@ class OrderEventList extends Component
     public function confirmDelete($orderId, $jenis)
     {
         $this->jenis = $jenis;
-
         $this->orderId = $orderId;
+
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'warning',
             'title' => 'Hapus?',
@@ -79,16 +77,17 @@ class OrderEventList extends Component
 
     public function action()
     {
-        $userOrder = UserEventOrder::find($this->orderId)->delete();
-        $pengelolaOrder = PengelolaEventOrder::find($this->orderId)->delete();
+        $pengelolaOrder = PengelolaEventOrder::find($this->orderId);
+        if ($pengelolaOrder->image_tf != null)
+            Storage::delete($pengelolaOrder->image_tf);
+        $pengelolaOrder->delete();
 
-        if ($userOrder && $pengelolaOrder) {
+        if ($pengelolaOrder) {
             $this->dispatchBrowserEvent('swal:modal', [
                 'type' => 'info',
                 'title' => 'Success!',
                 'text' => 'Data order dihapus.',
             ]);
-            $this->emit('updateCartCount');
         }
     }
 

@@ -30,17 +30,17 @@
       </ul>
 
       @guest
-        <form class="ps-lg-5">
+        <form class="ps-lg-5 mt-lg-0 mt-3">
           <a href="{{ route('login') }}" class="btn btn-lg btn-outline-primary order-0" type="submit">Sign In</a>
         </form>
       @endguest
       @auth
         @can('pengunjung')
-          <form class="ps-lg-5">
+          <form class="ps-lg-5 mt-lg-0 mt-3">
             <button wire:click="logout" class="btn btn-lg btn-outline-primary order-0" type="submit">Logout</button>
           </form>
         @else
-          <div class="ps-lg-5">
+          <div class="ps-lg-5 mt-lg-0 mt-3">
             <button class="btn btn-lg btn-outline-primary order-0"
               onclick="window.location.href='/dashboard'">Dashboard</button>
           </div>

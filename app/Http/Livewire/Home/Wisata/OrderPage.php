@@ -55,8 +55,10 @@ class OrderPage extends Component
 
     public function action()
     {
+        $no_order = rand(1, 10000);
+
         $userOrder = UserOrder::create([
-            'no_order' => rand(1, 10000),
+            'no_order' => $no_order,
             'user_id' => auth()->user()->id,
             'tour_place_id' => $this->wisata->id,
             'quantity' => $this->qty,
@@ -65,8 +67,8 @@ class OrderPage extends Component
         ]);
 
         $pengelolaOrder = PengelolaOrder::create([
-            'no_order' => rand(1, 10000),
-            'user_id' => $this->wisata->user_id,
+            'no_order' => $no_order,
+            'user_id' => $this->wisata->id,
             'tour_place_id' => $this->wisata->id,
             'quantity' => $this->qty,
             'total_payment' => $this->paymentTotal,

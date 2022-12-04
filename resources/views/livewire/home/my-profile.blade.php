@@ -22,7 +22,7 @@
     <div class="row align-items-center min-vh-25">
       <div class="col-md-12 col-lg-12 text-center text-md-start" style="margin-top: -65px;">
 
-        <div class="card border shadow-lg p-lg-4 p-3" style="border-radius: 30px;">
+        <div class="card border shadow-lg p-lg-4 p-0 py-3 text-start" style="border-radius: 30px;">
           <div class="card-body">
             <h2 class="fw-bold text-center">My Profile <span class="text-primary">SultraSpot</span></h2>
             <hr style="height: 2px; width: 170px; border-radius: 5px;" class="mt-3 mb-5 mx-auto bg-primary">
@@ -46,7 +46,7 @@
                   <div class="card mb-4">
                     <!-- Account -->
                     <div class="card-body">
-                      <div class="d-flex align-items-start   align-items-sm-center gap-4">
+                      <div class="d-flex align-items-start align-items-sm-center gap-4">
                         @if ($imgProfil)
                           <img src="{{ $imgProfil->temporaryUrl() }}" alt="user-avatar" class="d-block rounded"
                             height="100" width="100" id="uploadedAvatar" />
@@ -59,31 +59,45 @@
                         @endif
 
                         <div class="button-wrapper">
-                          <label for="upload" class="btn btn-primary me-2 mb-4 color-primary-bg color-primary-outline"
+                          <label for="upload"
+                            class="btn btn-primary me-2 mb-lg-4 mb-2 color-primary-bg color-primary-outline"
                             wire:loading.class='disabled' tabindex="0">
-                            <span class="d-none d-sm-block">Unggah profil</span>
+                            <span>Unggah profil</span>
                             <i class="bx bx-upload d-block d-sm-none"></i>
                             <input wire:model="imgProfil" onchange="previewImage()" type="file" id="upload"
                               class="account-file-input sampul" hidden accept="image/png, image/jpeg" />
                           </label>
+
                           <button onclick="window.location.href='/my-profile'" type="button"
                             class="btn btn-outline-secondary account-image-reset mb-4">
                             <i class="bx bx-reset d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Reset</span>
+                            <span class="">Reset</span>
                           </button>
-                          <p class="mb-0" style="color: rgba(0, 0, 0, .4)">
-                            Upload format JPG atau PNG dengan rasio 1:1. Maksimal 2MB.
-                          </p>
-                          @error('imgProfil')
-                            <div class="text-danger"> {{ $message }} </div>
-                          @enderror
+
+                          <div class="d-lg-block d-none">
+                            <p class="mb-0" style="color: rgba(0, 0, 0, .4)">
+                              Upload format JPG atau PNG dengan rasio 1:1. Maksimal 2MB.
+                            </p>
+                            @error('imgProfil')
+                              <div class="text-danger"> {{ $message }} </div>
+                            @enderror
+                          </div>
                         </div>
                       </div>
+
+                      <div class="d-lg-none d-block">
+                        <p>Upload format JPG atau PNG dengan rasio 1:1. Maksimal 2MB.</p>
+                        @error('imgProfil')
+                          <div class="text-danger"> {{ $message }} </div>
+                        @enderror
+                      </div>
                     </div>
+
                     <hr class="my-0" />
+
                     <div class="card-body">
                       <div class="row">
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-6 order-lg-0">
                           <label for="name" class="form-label">Nama Lengkap</label>
                           <input wire:model="name" class="form-control @error('name') is-invalid @enderror"
                             type="text" id="name" value="{{ $name }}" />
@@ -92,13 +106,13 @@
                           @enderror
                         </div>
 
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-6 order-lg-1 order-2">
                           <label for="username" class="form-label">Username</label>
                           <input class="form-control" type="text" id="username" value="{{ $username }}"
                             readonly />
                         </div>
 
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-6 order-lg-2">
                           <label for="email" class="form-label">E-mail</label>
                           <input wire:model="email" class="form-control @error('email') is-invalid @enderror"
                             type="text" id="email" value="{{ $email }}" />
@@ -107,23 +121,11 @@
                           @enderror
                         </div>
 
-                        <div class="mb-3 col-md-6">
+                        <div class="mb-3 col-md-6 order-lg-3 order-3">
                           <label for="user_type" class="form-label">Tipe User</label>
                           <input type="text" class="form-control" id="user_type"
                             value="{{ str()->title($userType) }}" readonly />
                         </div>
-
-                        @can('pengelola')
-                          <div class="mb-3 mb-6 col-md-6">
-                            <label for="noRek" class="form-label">No. Rekening Bank</label>
-                            <input wire:model="noRek" type="text"
-                              class="form-control @error('noRek') is-invalid @enderror" id="noRek"
-                              value="{{ $noRek }}" placeholder="No. rekening (Nama Bank)" />
-                            @error('noRek')
-                              <div class="invalid-feedback"> {{ $message }} </div>
-                            @enderror
-                          </div>
-                        @endcan
                       </div>
 
                       <div class="mt-2">

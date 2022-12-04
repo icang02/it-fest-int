@@ -63,7 +63,9 @@
                     @if ($order->image_tf == null) disabled @else data-bs-target="#bukti-tf{{ $order->id }}" @endif>Bukti
                     Transfer</button>
 
-                  <button wire:click="confirmDelete({{ $order->id }}, 'wisata')"class="btn btn-sm btn-danger">
+                  <button
+                    @if ($order->status == 'pending' && $order->image_tf != null) disabled @else wire:click="confirmDelete({{ $order->id }}, 'wisata')" @endif
+                    class="btn btn-sm btn-danger">
                     Hapus
                   </button>
                 </td>
@@ -114,12 +116,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
 
-                      @if ($order->image_tf == null && $order->status == 'pending')
-                        <button onclick="confirm('Batalkan order?') || event.stopImmediatePropagation()"
-                          wire:click="cancelOrder({{ $order->id }}, 'event')" type="button" class="btn btn-danger"
-                          data-bs-dismiss="modal">Batalkan
-                          order</button>
-                      @elseif ($order->status == 'selesai')
+                      @if ($order->status == 'selesai')
                         <form action="{{ url("/invoice/$order->id/event") }}" method="post">
                           @csrf
                           <button type="submit" class="btn btn-success">Unduh Invoice</button>

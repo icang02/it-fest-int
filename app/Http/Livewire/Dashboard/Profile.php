@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -19,6 +20,8 @@ class Profile extends Component
 
     public function mount()
     {
+        if (Gate::allows('pengunjung')) return abort(404);
+
         $this->user = User::find(auth()->user()->id);
 
         $this->userId = $this->user->id;
@@ -32,28 +35,33 @@ class Profile extends Component
         // dd($this->imgAvatars);
     }
 
-    public function resetAvatars()
-    {
-        redirect('profile');
-    }
-
     public function updateUser($userId)
     {
+        $profilLama = User::find($userId)->image_profil;
+        $avatars = $profilLama;
+        // dd($this->imgAvatars);
+
         $rules = [
             'name' => 'required',
             'email' => 'required|email:dns',
-            'noRek' => 'required',
         ];
-        if ($this->user->image_profil != null) {
+        if ($this->imgProfil || $this->imgAvatars != $profilLama) {
             $rules['imgProfil'] = 'image|max:2048';
+            // dd('tidak sama');
         }
+
+        // dd('null isinya');
 
         $this->validate($rules);
 
-        if ($this->imgProfil != null) {
-            if ($this->imgAvatars != null) {
-                Storage::delete($this->imgAvatars);
+        if ($this->imgProfil) {
+            if ($profilLama != null)
+                Storage::delete($profilLama);
+            if ($profilLama != null && $this->imgAvatars == $profilLama) {
+                // dd('hapus profil lama');
+                Storage::delete($profilLama);
             }
+            // dd('profil lama dipake');
             $avatars = $this->imgProfil->store('img/avatars');
         }
 
@@ -62,7 +70,6 @@ class Profile extends Component
             'name' => $this->name,
             'email' => $this->email,
             'image_profil' => $avatars ?? null,
-            'no_rek' => $this->noRek,
         ]);
 
         if ($user) {
@@ -92,8 +99,8 @@ class Profile extends Component
 
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'warning',
-            'title' => 'Are you sure?',
-            'text' => 'Account cannot be returned.',
+            'title' => 'Hapus akun?',
+            'text' => 'Akun Anda tidak dapat dikembalikan.',
             'id' => $userId,
         ]);
     }
@@ -105,7 +112,7 @@ class Profile extends Component
             Storage::delete($user->image_profil);
         $user->delete();
 
-        return redirect()->route('login');
+        return redirect('/login')->with('status', 'Akun Anda berhasil dihapus.');
     }
 
     public function render()

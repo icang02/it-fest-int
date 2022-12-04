@@ -29,9 +29,4 @@ class Index extends Component
     {
         $this->resetPage();
     }
-
-    public function limitData($limit)
-    {
-        dd($limit);
-    }
 }

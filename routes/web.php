@@ -38,7 +38,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 Route::get('/seed', function () {
   Artisan::call('migrate:fresh --seed');
-  return redirect('/dashboard');
+  return redirect('/');
 });
 
 Route::post('/invoice/{id}/{jenis}', function ($id, $jenis) {
@@ -55,14 +55,6 @@ Route::post('/invoice/{id}/{jenis}', function ($id, $jenis) {
   return $pdf->download("invoice-$order->no_order-$jenis.pdf");
 });
 
-// Route::get('/coba/{id}', function ($id) {
-//   $order = App\Models\UserOrder::find($id);
-//   return view('invoice', [
-//     'order' => $order,
-//   ]);
-// });
-
-
 Route::get('/semua-wisata', WisataIndex::class);
 Route::get('/semua-wisata/{wisataId}', DetailWisata::class);
 Route::get('/semua-wisata/order/{wisataId}', OrderPage::class)->can('pengunjung');
@@ -78,16 +70,13 @@ Route::get('/semua-order', OrderIndex::class)->can('pengunjung');
 Route::get('/my-profile', MyProfile::class)->can('pengunjung');
 
 // Dashboard Pengelola - Halaman Event
-Route::get('/pengelola-event', PengelolaIndex::class);
-Route::get('/pengelola-event/add', PengelolaAdd::class);
-Route::get('/pengelola-event/{eventId}', PengelolaDetail::class);
-Route::get('/pengelola-event/edit/{eventId}', PengelolaEdit::class);
+Route::get('/pengelola-event', PengelolaIndex::class)->can('pengelola');
+Route::get('/pengelola-event/add', PengelolaAdd::class)->can('pengelola');
+Route::get('/pengelola-event/{eventId}', PengelolaDetail::class)->can('pengelola');
+Route::get('/pengelola-event/edit/{eventId}', PengelolaEdit::class)->can('pengelola');
 
 // Dashboard Pengelola - Halaman Event Order
-Route::get('/event-order', OrderEventList::class);
-
-
-
+Route::get('/event-order', OrderEventList::class)->can('pengelola');
 
 
 // ===============================================================
@@ -99,8 +88,8 @@ Route::get('profile', Profile::class)->name('profile')->middleware('auth');
 
 // Wisata
 Route::get('wisata', Wisata::class)->middleware('auth')->name('wisata');
-Route::get('wisata/{id}', WisataDetail::class)->middleware('auth')->name('wisata.detail')->can('pengunjung');
-Route::get('wisata/order/{id}', Order::class)->middleware('auth')->can('pengunjung');
+// Route::get('wisata/{id}', WisataDetail::class)->middleware('auth')->name('wisata.detail')->can('pengunjung');
+// Route::get('wisata/order/{id}', Order::class)->middleware('auth')->can('pengunjung');
 
 Route::get('wisata-add', WisataAdd::class)->middleware('auth')->name('wisata.add')->can('pengelola');
 Route::get('wisata-edit/{id}', WisataEdit::class)->middleware('auth')->name('wisata.edit')->can('pengelola');

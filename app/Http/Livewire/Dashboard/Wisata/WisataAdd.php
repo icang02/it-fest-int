@@ -37,10 +37,7 @@ class WisataAdd extends Component
     {
         $this->validate();
 
-        $image = cloudinary()->upload($this->image->getRealPath(), [
-            'folder' => 'wisata'
-        ])->getSecurePath();
-        $imageId = cloudinary()->getPublicId($image);
+        $image = $this->image->store('img/wisata');
 
         TourPlace::create([
             'id' => auth()->user()->id,

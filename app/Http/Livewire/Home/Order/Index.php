@@ -27,11 +27,6 @@ class Index extends Component
     public $searchGagal = "";
     public $searchSelesai = "";
 
-    public function mount()
-    {
-        // $image = UserOrder::find(1)->image_tf;
-        // dd(file_exists('storage/' . $image));
-    }
 
     public function getOrderId($orderId)
     {
@@ -107,27 +102,39 @@ class Index extends Component
 
     public function uploadImage($jenis)
     {
+        $pengelolaOrder = PengelolaOrder::find($this->orderId);
+        $userOrder = UserOrder::find($this->orderId);
+        $pengelolaEventOrder = PengelolaEventOrder::find($this->orderId);
+        $userEventOrder = UserEventOrder::find($this->orderId);
+
+        // dd($this->image);
         $this->validate([
             'image' => 'image|max:4096',
         ]);
 
-        $imgUser2 = $this->image->store('img/bukti-tf/pengunjung');
-        $imgUser3 = $this->image->store('img/bukti-tf/pengelola');
+        if ($this->image != null) {
+            if ($jenis == 'wisata') {
+                if ($userOrder->image_tf != null) {
+                    Storage::delete($userOrder->image_tf);
+                    Storage::delete($pengelolaOrder->image_tf);
+                }
+            } else {
+                if ($userEventOrder->image_tf != null) {
+                    Storage::delete($userEventOrder->image_tf);
+                    Storage::delete($pengelolaEventOrder->image_tf);
+                }
+            }
+
+            $imgUser2 = $this->image->store('img/bukti-tf/pengunjung');
+            $imgUser3 = $this->image->store('img/bukti-tf/pengelola');
+        }
 
         if ($jenis == 'wisata') {
-            UserOrder::find($this->orderId)->update([
-                'image_tf' => $imgUser2,
-            ]);
-            PengelolaOrder::find($this->orderId)->update([
-                'image_tf' => $imgUser3,
-            ]);
+            $userOrder->update(['image_tf' => $imgUser2]);
+            $pengelolaOrder->update(['image_tf' => $imgUser3]);
         } else {
-            UserEventOrder::find($this->orderId)->update([
-                'image_tf' => $imgUser2,
-            ]);
-            PengelolaEventOrder::find($this->orderId)->update([
-                'image_tf' => $imgUser3,
-            ]);
+            $userEventOrder->update(['image_tf' => $imgUser2]);
+            $pengelolaEventOrder->update(['image_tf' => $imgUser3]);
         }
 
         if ($imgUser2 && $imgUser3) {

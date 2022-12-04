@@ -34,21 +34,31 @@ class MyProfile extends Component
 
     public function updateUser($userId)
     {
+        $profilLama = User::find($userId)->image_profil;
+        $avatars = $profilLama;
         // dd($this->imgAvatars);
+
         $rules = [
             'name' => 'required',
             'email' => 'required|email:dns',
         ];
-        if ($this->imgAvatars != null) {
+        if ($this->imgProfil || $this->imgAvatars != $profilLama) {
             $rules['imgProfil'] = 'image|max:2048';
+            // dd('tidak sama');
         }
+
+        // dd('null isinya');
 
         $this->validate($rules);
 
-        if ($this->imgProfil != null) {
-            if ($this->imgAvatars != null) {
-                Storage::delete($this->imgAvatars);
+        if ($this->imgProfil) {
+            if ($profilLama != null)
+                Storage::delete($profilLama);
+            if ($profilLama != null && $this->imgAvatars == $profilLama) {
+                // dd('hapus profil lama');
+                Storage::delete($profilLama);
             }
+            // dd('profil lama dipake');
             $avatars = $this->imgProfil->store('img/avatars');
         }
 
@@ -86,8 +96,8 @@ class MyProfile extends Component
 
         $this->dispatchBrowserEvent('swal:confirm', [
             'type' => 'warning',
-            'title' => 'Are you sure?',
-            'text' => 'Account cannot be returned.',
+            'title' => 'Hapus akun?',
+            'text' => 'Akun Anda tidak dapat dikembalikan.',
             'id' => $userId,
         ]);
     }
@@ -99,7 +109,7 @@ class MyProfile extends Component
             Storage::delete($user->image_profil);
         $user->delete();
 
-        return redirect()->route('login');
+        return redirect('/login')->with('status', 'Akun Anda berhasil dihapus.');
     }
 
     public function render()

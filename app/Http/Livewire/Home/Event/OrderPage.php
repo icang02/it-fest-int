@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Home\Event;
 
 use App\Models\Event;
 use App\Models\PengelolaEventOrder;
-use App\Models\User;
 use App\Models\UserEventOrder;
 use Livewire\Component;
 
@@ -45,7 +44,6 @@ class OrderPage extends Component
 
     public function action()
     {
-        dd($this->event->user_id);
         $no_order = rand(1, 10000);
 
         $userOrder = UserEventOrder::create([

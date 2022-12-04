@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dashboard;
 
 use App\Models\Cart;
 use App\Models\TourPlace;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class WisataDetail extends Component
@@ -13,6 +14,7 @@ class WisataDetail extends Component
 
     public function mount($id)
     {
+        if (Gate::allows('pengunjung')) return abort(404);
         $this->wisata = TourPlace::find($id);
     }
 

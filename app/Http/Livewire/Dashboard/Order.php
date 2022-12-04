@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Dashboard;
 use App\Models\PengelolaOrder;
 use App\Models\TourPlace;
 use App\Models\UserOrder;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 
 class Order extends Component
@@ -18,6 +19,8 @@ class Order extends Component
 
     public function mount()
     {
+        if (Gate::allows('pengunjung')) return abort(404);
+
         $this->wisataId = session('wisataId');
         $this->wisata = TourPlace::find($this->wisataId);
 

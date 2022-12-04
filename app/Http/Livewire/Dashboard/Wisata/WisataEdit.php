@@ -20,7 +20,6 @@ class WisataEdit extends Component
     public $ticket_stock;
     public $rental;
     public $image;
-    public $imageId;
     public $maps;
 
     public $imageNew;
@@ -41,7 +40,6 @@ class WisataEdit extends Component
         $this->maps = $this->wisata->maps;
 
         $this->imageNew = $this->wisata->image;
-        $this->imageId = $this->wisata->image_id;
     }
 
     public function updateData()
@@ -63,17 +61,7 @@ class WisataEdit extends Component
         }
         $this->validate($rules);
 
-        $image = $this->imageNew;
-        $imageId = $this->imageId;
-        if ($this->image !== null) {
-            $image = cloudinary()->upload($this->image->getRealPath(), [
-                'folder' => 'wisata'
-            ])->getSecurePath();
-
-            if ($imageId !== null)
-                cloudinary()->destroy($this->imageId);
-            $imageId = cloudinary()->getPublicId($image);
-        }
+        $image = $this->image->store('img/wisata');
 
         TourPlace::find($this->placeId)->update([
             'name' => str()->title($this->name),
@@ -85,7 +73,6 @@ class WisataEdit extends Component
             'ticket_stock' => $this->ticket_stock,
             'rental' => $this->rental,
             'image' => $image,
-            'image_id' => $imageId,
             'maps' => $this->maps,
         ]);
 

@@ -116,12 +116,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
 
-                      @if ($order->image_tf == null && $order->status == 'pending')
-                        <button onclick="confirm('Batalkan order?') || event.stopImmediatePropagation()"
-                          wire:click="cancelOrder({{ $order->id }}, 'wisata')" type="button" class="btn btn-danger"
-                          data-bs-dismiss="modal">Batalkan
-                          order</button>
-                      @elseif ($order->status == 'selesai')
+                      @if ($order->status == 'selesai')
                         <form action="{{ url("/invoice/$order->id/wisata") }}" method="post">
                           @csrf
                           <button type="submit" class="btn btn-success">Unduh Invoice</button>

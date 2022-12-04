@@ -43,8 +43,8 @@
                   <input wire:model="imgProfil" onchange="previewImage()" type="file" id="upload"
                     class="account-file-input sampul" hidden accept="image/png, image/jpeg" />
                 </label>
-                <button type="button" class="btn btn-outline-secondary account-image-reset mb-4"
-                  wire:click='resetAvatars()' wire:loading.class='disabled'>
+                <button onclick="window.location.href='/profile'" type="button"
+                  class="btn btn-outline-secondary account-image-reset mb-4" wire:loading.class='disabled'>
                   <i class="bx bx-reset d-block d-sm-none"></i>
                   <span class="d-none d-sm-block">Reset</span>
                 </button>

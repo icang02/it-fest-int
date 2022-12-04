@@ -28,7 +28,7 @@
 
                         @if ($wisata->ticket_stock != 0)
                           <div class="mb-3">
-                            <label class="form-label" for="quantity">Masukan jumlah tiket</label>
+                            <label class="form-label" for="quantity">Pesan tiket sekarang</label>
                             <input wire:model="qty" type="number" class="form-control text-secondary" min="1"
                               max="{{ $wisata->ticket_stock }}" id="quantity">
                           </div>
@@ -107,7 +107,7 @@
                         </svg>
                       </div>
                       <div class="col-md-11 col-9">
-                        <div class="fw-bold">Address</div> {{ $wisata->address }}
+                        <div class="fw-bold">Alamat</div> {{ $wisata->address }}
                       </div>
                     </div>
                     <div class="row mb-3 text-start">
@@ -119,7 +119,7 @@
                         </svg>
                       </div>
                       <div class="col-md-11 col-9">
-                        <div class="fw-bold">Phone</div> {{ $wisata->telp }}
+                        <div class="fw-bold">Telp</div> {{ $wisata->telp }}
                       </div>
                     </div>
                     <div class="row mb-3 text-start">
@@ -131,7 +131,7 @@
                         </svg>
                       </div>
                       <div class="col-md-11 col-9">
-                        <div class="fw-bold">Ticket Price</div> Rp {{ number_format($wisata->price, 0, ',', '.') }}
+                        <div class="fw-bold">Harga Tiket</div> Rp {{ number_format($wisata->price, 0, ',', '.') }}
                       </div>
                     </div>
                     <div class="row text-start">
@@ -143,7 +143,7 @@
                         </svg>
                       </div>
                       <div class="col-md-11 col-9">
-                        <div class="fw-bold">Stock</div>
+                        <div class="fw-bold">Stok Tiket</div>
                         @if ($wisata->ticket_stock != 0)
                           <span> {{ $wisata->ticket_stock }}</span>
                         @else
