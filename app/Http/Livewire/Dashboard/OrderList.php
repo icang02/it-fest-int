@@ -17,11 +17,17 @@ class OrderList extends Component
     public function mount()
     {
         $this->getDataOrder();
+        $this->getData();
+        // dd($this->getData());
     }
 
     public function getDataOrder()
     {
         return PengelolaOrder::where('user_id', auth()->user()->id)->paginate(10);
+    }
+    public function getData()
+    {
+        return UserOrder::where('tour_place_id', auth()->user()->id)->paginate(10);
     }
 
     public function confirmOrder($orderId)
@@ -102,6 +108,7 @@ class OrderList extends Component
     {
         return view('livewire.dashboard.order-list', [
             'orderList' => $this->getDataOrder(),
+            'getData' => $this->getData(),
         ])->extends('layouts.dashboard', [
             'title' => 'Wisata Order'
         ])->section('main-content');

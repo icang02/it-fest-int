@@ -17,11 +17,16 @@ class OrderEventList extends Component
     public function mount()
     {
         $this->getDataOrder();
+        $this->getData();
     }
 
     public function getDataOrder()
     {
         return PengelolaEventOrder::where('user_id', auth()->user()->id)->paginate(10);
+    }
+    public function getData()
+    {
+        return UserEventOrder::where('user_id', auth()->user()->id)->paginate(10);
     }
 
     public function confirmOrder($orderId)
@@ -95,6 +100,7 @@ class OrderEventList extends Component
     {
         return view('livewire.dashboard.order-event-list', [
             'orderList' => $this->getDataOrder(),
+            'getData' => $this->getData(),
         ])->extends('layouts.dashboard', [
             'title' => 'Event Order'
         ])->section('main-content');

@@ -30,24 +30,30 @@
                   Rp {{ number_format($order->total_payment, 0, ',', '.') }}
                 </td>
 
+                @php
+                  $kosong = 'false';
+                  foreach ($getData as $data) {
+                      if ($data->no_order == $order->no_order) {
+                          $kosong = 'true';
+                      }
+                  }
+                @endphp
                 <td class="text-center">
-                  @if ($order->status == 'pending')
-                    <span class="badge bg-label-warning me-1"> Proses </span>
-                  @elseif ($order->status == 'pending')
-                    <span class="badge bg-label-warning me-1"> {{ $order->status }} </span>
+                  @if ($order->status == 'pending' && $kosong == 'true')
+                    <span class="badge bg-label-warning me-1"> Pending </span>
                   @elseif ($order->status == 'selesai')
-                    <span class="badge bg-label-success me-1"> {{ $order->status }} </span>
-                  @else
-                    <span class="badge bg-label-danger me-1"> {{ $order->status }} </span>
+                    <span class="badge bg-label-success me-1"> Selesai </span>
+                  @elseif ($order->status == 'gagal' || $kosong == 'false')
+                    <span class="badge bg-label-danger me-1"> Gagal </span>
                   @endif
                 </td>
 
                 <td class="text-center">
                   @if ($order->status == 'selesai')
                     <button class="btn btn-success btn-sm">Success</button>
-                  @elseif ($order->status == 'gagal')
+                  @elseif ($order->status == 'gagal' || $kosong == 'false')
                     <button class="btn btn-danger btn-sm">Cancel</button>
-                  @else
+                  @elseif ($order->status == 'pending' && $kosong == 'true')
                     <button wire:click="confirmOrder({{ $order->id }})"
                       class="btn btn-success btn-sm">Confirm</button>
                     <button wire:click="cancelOrder({{ $order->id }})" class="btn btn-danger btn-sm">Cancel</button>
@@ -63,9 +69,8 @@
                     @if ($order->image_tf == null) disabled @else data-bs-target="#bukti-tf{{ $order->id }}" @endif>Bukti
                     Transfer</button>
 
-                  <button
-                    @if ($order->status == 'pending' && $order->image_tf != null) disabled @else wire:click="confirmDelete({{ $order->id }}, 'wisata')" @endif
-                    class="btn btn-sm btn-danger">
+                  <button @if ($order->status == 'pending' && $kosong == 'true') disabled @endif
+                    wire:click="confirmDelete({{ $order->id }}, 'wisata')" class="btn btn-sm btn-danger">
                     Hapus
                   </button>
                 </td>

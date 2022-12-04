@@ -41,7 +41,7 @@ Route::get('/seed', function () {
   return redirect('/');
 });
 
-Route::post('/invoice/{id}/{jenis}', function ($id, $jenis) {
+Route::get('/invoice/{id}/{jenis}', function ($id, $jenis) {
 
   if ($jenis == 'wisata')
     $order = App\Models\UserOrder::find($id);
@@ -52,7 +52,19 @@ Route::post('/invoice/{id}/{jenis}', function ($id, $jenis) {
     'order' => $order,
     'jenis' => $jenis,
   ]);
+  $pdf->setPaper('A4');
   return $pdf->download("invoice-$order->no_order-$jenis.pdf");
+});
+
+Route::get('/coba/{id}/{jenis}', function ($id, $jenis) {
+  if ($jenis == 'wisata')
+    $order = App\Models\UserOrder::find($id);
+  else
+    $order = App\Models\UserEventOrder::find($id);
+  return view('invoice', [
+    'order' => $order,
+    'jenis' => $jenis,
+  ]);
 });
 
 Route::get('/semua-wisata', WisataIndex::class);

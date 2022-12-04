@@ -10,7 +10,7 @@
 
         <div class="card border shadow-lg p-lg-4 p-3" style="border-radius: 30px;">
           <div class="card-body">
-            <h2 class="fw-bold text-center">List <span class="text-primary">Order</span></h2>
+            <h2 translate="no" class="fw-bold text-center">List <span class="text-primary">Order</span></h2>
             <hr style="height: 2px; width: 170px; border-radius: 5px;" class="mt-3 mb-5 mx-auto bg-primary">
 
             <div class="row text-center">
@@ -57,7 +57,7 @@
                     }
                   </style>
                   {{-- Ini bagian all orders --}}
-                  <div class="tab-pane fade show active" id="all-orders" role="tabpanel">
+                  <div class="tab-pane fade show active text-start" id="all-orders" role="tabpanel">
                     <div class="row">
                       <div class="col-lg-4 mb-3">
                         <div class="input-group">
@@ -91,7 +91,7 @@
                         <div class="table-responsive">
                           <table class="table">
                             <thead>
-                              <tr>
+                              <tr translate="no">
                                 <th>No Order</th>
                                 <th>Customer</th>
                                 <th>Order</th>
@@ -107,7 +107,7 @@
                                 @foreach ($wisataOrder as $item)
                                   <tr>
                                     <td>{{ $item->no_order }}</td>
-                                    <td>{{ $item->user->name }}</td>
+                                    <td translate="no">{{ $item->user->name }}</td>
                                     <td>{{ $item->tour_place->name }}</td>
                                     <td>
                                       {{ $item->created_at->format('d/m/Y') }}
@@ -121,7 +121,7 @@
                                         <span class="btn-sm btn-danger">Gagal</span>
                                       @endif
                                     </td>
-                                    <td>
+                                    <td translate="no">
                                       @if (is_null($item->image_tf))
                                         Not Paid
                                       @else
@@ -245,10 +245,13 @@
                                               class="btn btn-danger" data-bs-dismiss="modal">Batalkan
                                               order</button>
                                           @elseif ($item->status == 'selesai')
-                                            <form action="{{ url("/invoice/$item->id/wisata") }}" method="post">
+                                            {{-- <form action="{{ url("/invoice/$item->id/wisata") }}">
                                               @csrf
                                               <button type="submit" class="btn btn-success">Unduh Invoice</button>
-                                            </form>
+                                            </form> --}}
+                                            <button
+                                              onclick="window.location.href='/invoice/{{ $item->id }}/wisata'"
+                                              class="btn btn-success">Unduh Invoice</button>
                                           @endif
 
                                         </div>
@@ -398,10 +401,13 @@
                                               class="btn btn-danger" data-bs-dismiss="modal">Batalkan
                                               order</button>
                                           @elseif ($item->status == 'selesai')
-                                            <form action="{{ url("/invoice/$item->id/event") }}" method="post">
+                                            {{-- <form action="{{ url("/invoice/$item->id/event") }}" method="post">
                                               @csrf
                                               <button type="submit" class="btn btn-success">Unduh Invoice</button>
-                                            </form>
+                                            </form> --}}
+                                            <button
+                                              onclick="window.location.href='/invoice/{{ $item->id }}/event'"
+                                              class="btn btn-success">Unduh Invoice</button>
                                           @endif
 
                                         </div>
@@ -422,7 +428,7 @@
                   </div>
 
                   {{-- ini bagian completed --}}
-                  <div class="tab-pane fade" id="completed-order" role="tabpanel">
+                  <div class="tab-pane fade text-start" id="completed-order" role="tabpanel">
                     <div class="row">
                       <div class="col-lg-4 mb-3">
                         <div class="input-group">
@@ -542,7 +548,7 @@
                   </div>
 
                   {{-- ini bagian cancelled --}}
-                  <div class="tab-pane fade" id="cancelled-order" role="tabpanel">
+                  <div class="tab-pane fade text-start" id="cancelled-order" role="tabpanel">
                     <div class="row">
                       <div class="col-lg-4 mb-3">
                         <div class="input-group">

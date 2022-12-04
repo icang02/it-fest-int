@@ -29,8 +29,8 @@
                         @if ($event->ticket_stock != 0)
                           <div class="mb-3">
                             <label class="form-label" for="quantity">Pesan tiket sekarang</label>
-                            <input wire:model="qty" type="number" class="form-control text-secondary" min="1"
-                              max="{{ $event->ticket_stock }}" id="quantity">
+                            <input required wire:model="qty" type="number" class="form-control text-secondary"
+                              min="1" max="{{ $event->ticket_stock }}" id="quantity">
                           </div>
 
                           <div class="mt-4">

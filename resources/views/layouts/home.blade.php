@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" dir="ltr">
+<html lang="en-US" dir="ltr" onchange="myFunction()">
 
 <head>
   <meta charset="utf-8">
@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('build/assets/app.d86a1d90.css') }}">
     <script src="{{ asset('build/assets/app.8007840a.js') }}"></script>
   @endif
+
 </head>
 
 <body>
@@ -54,42 +55,51 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
   <script src="{{ asset('rhea/js/theme.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('sneat/css/translate.css') }}">
-<script type="text/javascript" src="{{ asset('sneat/js/translate.js') }}"></script>
-<script>
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: "id",
-        includedLanguages: 'id,en',
-      },
-      "google_translate_element"
-    );
-  }
+  <script type="text/javascript" src="{{ asset('sneat/js/translate.js') }}"></script>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: "id",
+          includedLanguages: 'id,en',
+        },
+        "google_translate_element"
+      );
+    }
 
-  window.addEventListener("load", (event) => {
-    const select = document.querySelector(".goog-te-combo");
-    select.classList.add("form-select");
-  });
-</script>
+    function myFunction() {
+      const body = document.getElementsByTagName('body')[0];
+      body.style.top = 'unset';
+    }
+
+    window.addEventListener("load", (event) => {
+      const body = document.getElementsByTagName('body')[0];
+      const select = document.querySelector(".goog-te-combo");
+
+      // body.removeAttribute('style');
+      body.style.top = 'unset';
+      select.classList.add("form-select");
+    });
+  </script>
 
   <div class="float" id="google_translate_element"></div>
   <style>
     .float {
-    position: fixed;
-    padding: 0%;
-    width: auto;
-    height: 48 px;
-    bottom: 40 px;
-    right: 40 px;
-    color: aliceblue;
-    background-color: #3984f3;
-    color: rgb(7, 7, 7);
-    text-align: center;
-    box-shadow: 2px 2px 3px #999;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
+      position: fixed;
+      padding: 0%;
+      width: auto;
+      height: 48 px;
+      bottom: 40 px;
+      right: 40 px;
+      color: aliceblue;
+      background-color: #3984f3;
+      color: rgb(7, 7, 7);
+      text-align: center;
+      box-shadow: 2px 2px 3px #999;
+      border-top-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
   </style>
-   
+
 </body>
 
 </html>

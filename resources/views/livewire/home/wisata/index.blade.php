@@ -54,7 +54,7 @@
                       </div>
                       <div class="ps-3 d-flex justify-content-between align-items-center">
                         <h5 class="text-white">{{ $wisata->name }}</h5>
-                        <h6 class="text-600">{{ $wisata->city }} </h6>
+                        <h6 translate="no" class="text-600">{{ $wisata->city }} </h6>
                       </div>
                     </div>
                   </a>
