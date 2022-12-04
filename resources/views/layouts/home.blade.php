@@ -53,7 +53,43 @@
   <script src="{{ asset('rhea/vendors/plyr/plyr.polyfilled.min.js') }}"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
   <script src="{{ asset('rhea/js/theme.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('sneat/css/translate.css') }}">
+<script type="text/javascript" src="{{ asset('sneat/js/translate.js') }}"></script>
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: "id",
+        includedLanguages: 'id,en',
+      },
+      "google_translate_element"
+    );
+  }
 
+  window.addEventListener("load", (event) => {
+    const select = document.querySelector(".goog-te-combo");
+    select.classList.add("form-select");
+  });
+</script>
+
+  <div class="float" id="google_translate_element"></div>
+  <style>
+    .float {
+    position: fixed;
+    padding: 0%;
+    width: auto;
+    height: 48 px;
+    bottom: 40 px;
+    right: 40 px;
+    color: aliceblue;
+    background-color: #3984f3;
+    color: rgb(7, 7, 7);
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  </style>
+   
 </body>
 
 </html>

@@ -1,0 +1,117 @@
+.float {
+  position: fixed;
+  padding: 0;
+  width: 150px;
+  height: 48px;
+  bottom: 40px;
+  right: 40px;
+  color: aliceblue;
+  background-color: #3984f3;
+  color: rgb(7, 7, 7);
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  border-radius: 50px;
+}
+
+.drop-down02 {
+  position: relative;
+}
+
+.drop2 {
+  text-transform: capitalize !important;
+  font-weight: normal !important;
+  margin-left: -1.5px !important;
+}
+
+.drop-down02 .sub-menu02 {
+  position: absolute !important;
+  left: 100%;
+  top: -9px !important;
+}
+
+.drop-down02 .dropdown-toggle {
+  padding: 0.25rem 1.1rem !important;
+}
+
+/* End dropdown */
+/* Google translate */
+.goog-te-gadget {
+  color: transparent !important;
+}
+
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget > span {
+  display: none;
+}
+
+#google_translate_element select {
+  color: #ffffff;
+  height: 2.35rem;
+  border: 0;
+}
+#google_translate_element option {
+  color: #3984f3;
+}
+.form-control {
+  border-radius: 4px;
+}
+
+.navbar1 {
+  /* transform: translateY(-25px); */
+  margin-top: -20px;
+}
+
+.form-search {
+  display: flex;
+  align-items: center;
+  padding-top: 16px;
+  /* border: 1px solid; */
+}
+
+.form-search div {
+  width: 130px;
+}
+
+.form-search form input {
+  height: 2.35rem;
+  width: 200px;
+  margin-left: 7px;
+}
+
+.form-search a {
+  height: 2.35rem !important;
+  margin-left: 7px;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+  border-radius: 4px;
+  margin-top: -18px;
+}
+
+@media screen and (max-width: 767px) {
+  .drop-down02 .sub-menu02 {
+    position: static !important;
+    padding-top: 27px;
+  }
+
+  .navbar1 {
+    margin-top: 0;
+  }
+
+  .form-search {
+    display: block;
+  }
+
+  .form-search div {
+    width: 130px;
+    margin: auto;
+    margin-bottom: 7px;
+  }
+
+  .form-search form input {
+    width: 200px !important;
+  }
+
+  .form-search a {
+    margin-top: 11px;
+  }
+}

@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg fixed-top py-3 backdrop bg-white" data-navbar-on-scroll="data-navbar-on-scroll">
+
   <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="{{ url('/') }}"> <img
         class="d-inline-block align-top img-fluid" src="{{ asset('sneat/img/favicon/logo.png') }}" alt=""
         width="50" /><span class="text-primary fs-4 ps-2">SultraSpot</span></a>
@@ -27,8 +28,11 @@
             </a>
           </li>
         @endcan
+        
       </ul>
 
+
+      
       @guest
         <form class="ps-lg-5 mt-lg-0 mt-3">
           <a href="{{ route('login') }}" class="btn btn-lg btn-outline-primary order-0" type="submit">Sign In</a>
@@ -46,7 +50,6 @@
           </div>
         @endcan
       @endauth
-
     </div>
   </div>
 </nav>
