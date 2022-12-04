@@ -75,13 +75,10 @@
               </div>
 
               <div class="mb-3 col-md-4">
-                <label for="rental" class="form-label">Camera Rental</label>
-                <select wire:model='rental' class="form-select @error('rental') is-invalid @enderror">
-                  <option value="">Select menu</option>
-                  <option value="1" {{ $rental == 1 ? 'selected' : '' }}>Available</option>
-                  <option value="0" {{ $rental == 0 ? 'selected' : '' }}>Not available</option>
-                </select>
-                @error('rental')
+                <label for="query" class="form-label">Maps Query</label>
+                <input wire:model='query' value="{{ old('query', $query) }}" type="text"
+                  class="form-control @error('query') is-invalid @enderror" id="query">
+                @error('query')
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>

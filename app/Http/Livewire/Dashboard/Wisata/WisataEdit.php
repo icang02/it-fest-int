@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboard\Wisata;
 
 use App\Models\TourPlace;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -18,9 +19,9 @@ class WisataEdit extends Component
     public $telp;
     public $price;
     public $ticket_stock;
-    public $rental;
     public $image;
     public $maps;
+    public $query;
 
     public $imageNew;
 
@@ -36,14 +37,17 @@ class WisataEdit extends Component
         $this->telp = $this->wisata->telp;
         $this->price = $this->wisata->price;
         $this->ticket_stock = $this->wisata->ticket_stock;
-        $this->rental = $this->wisata->rental;
         $this->maps = $this->wisata->maps;
+        $this->query = $this->wisata->query;
+        $this->image = $this->wisata->image;
 
         $this->imageNew = $this->wisata->image;
     }
 
     public function updateData()
     {
+        $image = TourPlace::find($this->placeId)->image;
+        // dd($imageLama == $this->image);
         $rules = [
             'name' => 'required',
             'city' => 'required',
@@ -52,16 +56,16 @@ class WisataEdit extends Component
             'telp' => 'required',
             'price' => 'required',
             'ticket_stock' => 'required',
-            'rental' => 'required',
             'maps' => 'required',
+            'query' => 'required',
         ];
 
-        if ($this->image !== null) {
+        if ($image != $this->image) {
             $rules['image'] = 'image|max:2048';
+            Storage::delete($image);
+            $image = $this->image->store('img/wisata');
         }
         $this->validate($rules);
-
-        $image = $this->image->store('img/wisata');
 
         TourPlace::find($this->placeId)->update([
             'name' => str()->title($this->name),
@@ -71,9 +75,9 @@ class WisataEdit extends Component
             'telp' => $this->telp,
             'price' => $this->price,
             'ticket_stock' => $this->ticket_stock,
-            'rental' => $this->rental,
             'image' => $image,
             'maps' => $this->maps,
+            'query' => $this->query,
         ]);
 
         return redirect()->route('wisata')->with('success', 'Updated data successfully.');
@@ -88,9 +92,9 @@ class WisataEdit extends Component
         $this->telp = $this->wisata->telp;
         $this->price = $this->wisata->price;
         $this->ticket_stock = $this->wisata->ticket_stock;
-        $this->rental = $this->wisata->rental;
-        $this->image = null;
+        $this->image = $this->image;
         $this->maps = $this->wisata->maps;
+        $this->query = $this->wisata->query;
     }
 
     public function render()

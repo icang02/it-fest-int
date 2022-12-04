@@ -23,7 +23,6 @@ return new class extends Migration
             $table->unsignedInteger('price');
             $table->string('telp');
             $table->string('image',)->default('default.jpg');
-            $table->string('image_id',)->nullable();
             $table->string('maps', 75);
             $table->string('query', 75)->nullable();
             $table->integer('terjual')->default(0);
