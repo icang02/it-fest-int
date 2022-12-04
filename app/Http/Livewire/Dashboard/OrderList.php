@@ -28,12 +28,18 @@ class OrderList extends Component
     {
         $userOrder = UserOrder::find($orderId);
         $pengelolaOrder = PengelolaOrder::find($orderId);
-
-        $userOrder->update(['status' => 'selesai']);
-        $pengelolaOrder->update(['status' => 'selesai']);
-
         $place = TourPlace::find($userOrder->tour_place_id);
-        $place->update(['ticket_stock' => $place->ticket_stock - $userOrder->quantity]);
+
+        $userOrder->update([
+            'status' => 'selesai',
+        ]);
+        $pengelolaOrder->update([
+            'status' => 'selesai',
+        ]);
+        $place->update([
+            'ticket_stock' => $place->ticket_stock - $userOrder->quantity,
+            'terjual' => $place->terjual + $userOrder->quantity,
+        ]);
 
         if ($userOrder && $pengelolaOrder) {
             $this->dispatchBrowserEvent('swal:toast', [

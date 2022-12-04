@@ -46,7 +46,7 @@ class Profile extends Component
             'email' => 'required|email:dns',
         ];
         if ($this->imgProfil || $this->imgAvatars != $profilLama) {
-            $rules['imgProfil'] = 'image|max:2048';
+            $rules['imgProfil'] = 'image|mimes:png,jpg|max:2048';
             // dd('tidak sama');
         }
 

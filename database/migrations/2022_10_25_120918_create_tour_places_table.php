@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('image_id',)->nullable();
             $table->string('maps', 75);
             $table->string('query', 75)->nullable();
-            $table->boolean('rental')->default(0);
+            $table->integer('terjual')->default(0);
         });
     }
 

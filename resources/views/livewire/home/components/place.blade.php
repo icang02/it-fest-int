@@ -23,7 +23,9 @@
               <div class="row h-100">
 
                 @php
-                  $allWisata = App\Models\TourPlace::take(3)->get();
+                  $allWisata = App\Models\TourPlace::take(3)
+                      ->orderBy('terjual', 'DESC')
+                      ->get();
                 @endphp
 
                 @foreach ($allWisata as $wisata)
