@@ -17,7 +17,7 @@
 
             <div class="row gy-lg-4 gy-2">
 
-              <div class="col-md-7 mb-md-0 mb-4 pe-lg-0 ps-lg-3 ps-2 pe-2">
+              <div class="col-md-7 mb-md-0 mb-lg-4 mb-0 pe-lg-0 ps-lg-3 ps-2 pe-2">
                 <div class="card">
                   <div class="card-body">
                     <div class="mt-3" style="text-align: justify"> {{ $event->description }} </div>
@@ -28,7 +28,7 @@
 
                         @if ($event->ticket_stock != 0)
                           <div class="mb-3">
-                            <label class="form-label" for="quantity">Masukan jumlah tiket</label>
+                            <label class="form-label" for="quantity">Pesan tiket sekarang</label>
                             <input wire:model="qty" type="number" class="form-control text-secondary" min="1"
                               max="{{ $event->ticket_stock }}" id="quantity">
                           </div>
@@ -64,7 +64,7 @@
                 </div>
               </div>
 
-              <div class="col-md-5 pt-3 pe-lg-3 ps-lg-3 ps-2 pe-2">
+              <div class="col-md-5 pt-lg-3 pt-0 pe-lg-3 ps-lg-3 ps-2 pe-2">
                 <div class="card">
                   <div class="card-body">
 

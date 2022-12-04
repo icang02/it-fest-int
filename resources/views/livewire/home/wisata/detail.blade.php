@@ -17,11 +17,11 @@
 
             <div class="row gy-lg-4 gy-2">
 
-              <div class="col-md-7 mb-md-0 mb-4 pe-lg-0 ps-lg-3 ps-2 pe-2">
+              <div class="col-md-7 mb-md-0 mb-lg-4 mb-0 pe-lg-0 ps-lg-3 ps-2 pe-2">
                 <div class="card">
                   <div class="card-body">
                     <div class="mt-3" style="text-align: justify"> {{ $wisata->description }} </div>
-                    <hr class="my-4">
+                    <hr class="mt-4">
 
                     @can('pengunjung')
                       <form wire:submit.prevent="submitToOrder({{ $wisata->id }})">
@@ -64,7 +64,7 @@
                 </div>
               </div>
 
-              <div class="col-md-5 pt-3 pe-lg-3 ps-lg-3 ps-2 pe-2">
+              <div class="col-md-5 pt-lg-3 pt-0 pe-lg-3 ps-lg-3 ps-2 pe-2">
                 <div class="card">
                   <div class="card-body">
 

@@ -16,9 +16,9 @@ class WisataAdd extends Component
     public $telp;
     public $price;
     public $ticket_stock;
-    public $rental;
     public $image;
     public $maps;
+    public $query;
 
     protected $rules = [
         'name' => 'required',
@@ -28,9 +28,9 @@ class WisataAdd extends Component
         'telp' => 'required',
         'price' => 'required',
         'ticket_stock' => 'required',
-        'rental' => 'required',
         'image' => 'image|max:2048',
         'maps' => 'required',
+        'query' => 'required',
     ];
 
     public function storeData()
@@ -48,10 +48,9 @@ class WisataAdd extends Component
             'telp' => $this->telp,
             'price' => $this->price,
             'ticket_stock' => $this->ticket_stock,
-            'rental' => $this->rental,
             'image' => $image,
-            'image_id' => $imageId,
             'maps' => $this->maps,
+            'query' => $this->query,
         ]);
 
         return redirect()->route('wisata')->with('success', 'Added data successfully.');
@@ -66,9 +65,9 @@ class WisataAdd extends Component
         $this->telp = '';
         $this->price = '';
         $this->ticket_stock = '';
-        $this->rental = '';
         $this->image = '';
         $this->maps = '';
+        $this->query = '';
     }
 
     public function render()
