@@ -60,7 +60,7 @@
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
           pageLanguage: "id",
-          includedLanguages: 'id,en',
+          includedLanguages: 'id,en,es,fr,ar,ru,hi',
         },
         "google_translate_element"
       );
