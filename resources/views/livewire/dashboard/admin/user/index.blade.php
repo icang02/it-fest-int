@@ -35,7 +35,11 @@
               <td>
                 <li data-bs-toggle="tooltip" data-bs-placement="top" class="avatar avatar-xs pull-up list-unstyled"
                   data-bs-original-title="{{ $user->name }}">
-                  <img src="{{ asset('sneat/img/avatars/profil.png') }}" alt="Avatar" class="rounded-circle">
+                  @if ($user->image_profil != null)
+                    <img src="{{ asset("storage/$user->image_profil") }}" alt="Avatar" class="rounded-circle">
+                  @else
+                    <img src="{{ asset('sneat/img/avatars/profil.png') }}" alt="Avatar" class="rounded-circle">
+                  @endif
                 </li>
               </td>
               <td> {{ $user->email }} </td>
@@ -48,7 +52,8 @@
                     <a class="dropdown-item" href="{{ url("$role->name/$user->username/edit") }}"><i
                         class="bx bx-edit-alt me-1"></i> Edit</a>
                     @if (auth()->user()->role_id !== $user->role_id)
-                      <button class="dropdown-item" wire:click="deleteConfirm({{ $user->id }})">
+                      <button onclick="confirm('Hapus user?') || event.stopImmediatePropagation()" class="dropdown-item"
+                        wire:click="deleteConfirm({{ $user->id }})">
                         <i class="bx bx-trash me-1"></i>
                         Delete
                       </button>

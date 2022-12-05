@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dashboard\Admin\User;
 
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,19 +21,22 @@ class Index extends Component
         $this->role = $role;
     }
 
-    public function deleteConfirm($id)
-    {
-        $this->dispatchBrowserEvent('swal:confirm', [
-            'type' => 'warning',
-            'title' => 'Checkout this item?',
-            'text' => 'Please check your item before checkout.',
-            'id' => $id,
-        ]);
-    }
+    // public function deleteConfirm($id)
+    // {
+    //     $this->dispatchBrowserEvent('swal:confirm', [
+    //         'type' => 'warning',
+    //         'title' => 'Checkout this item?',
+    //         'text' => 'Please check your item before checkout.',
+    //         'id' => $id,
+    //     ]);
+    // }
 
-    public function action($userId)
+    public function deleteConfirm($userId)
     {
-        $user = User::find($userId)->delete();
+        $user = User::find($userId);
+        if ($user->image_profil != null) Storage::delete($user->image_profil);
+        $user->delete();
+
         if ($user) {
             $this->dispatchBrowserEvent('swal:modal', [
                 'type' => 'success',

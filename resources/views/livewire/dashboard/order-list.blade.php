@@ -122,10 +122,8 @@
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
 
                       @if ($order->status == 'selesai')
-                        <form action="{{ url("/invoice/$order->id/wisata") }}" method="post">
-                          @csrf
-                          <button type="submit" class="btn btn-success">Unduh Invoice</button>
-                        </form>
+                        <button type="button" onclick="window.location.href='/invoice/{{ $order->id }}/wisata'"
+                          class="btn btn-success">Unduh Invoice</button>
                       @endif
 
                     </div>
