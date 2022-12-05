@@ -24,6 +24,7 @@ class PengelolaEdit extends Component
 
     public $event, $eventId;
     public $previewCover;
+    public $coverDb;
 
     public function mount($eventId)
     {
@@ -41,25 +42,14 @@ class PengelolaEdit extends Component
         $this->query = $this->event->query;
         $this->tgl_mulai = $this->event->tgl_mulai;
         $this->tgl_akhir = $this->event->tgl_akhir;
-    }
 
-    // protected $rules = [
-    //     'name' => 'required',
-    //     'place' => 'required',
-    //     'description' => 'required',
-    //     'ticket_stock' => 'required',
-    //     'price' => 'required',
-    //     'phone' => 'required',
-    //     'cover' => 'image|max:2048',
-    //     'maps' => 'required',
-    //     'query' => 'required',
-    //     'tgl_mulai' => 'required',
-    //     'tgl_akhir' => 'required',
-    // ];
+        $this->coverDb = $this->event->cover;
+    }
 
     public function storeData()
     {
         $cover = Event::find($this->eventId)->cover;
+        // dd($this->previewCover);
 
         $rules = [
             'name' => 'required',
@@ -74,12 +64,12 @@ class PengelolaEdit extends Component
             'tgl_akhir' => 'required',
         ];
 
-        if ($this->previewCover != $cover)
+        if ($this->cover)
             $rules['cover'] = 'image|max:2048';
 
         $this->validate($rules);
 
-        if ($this->previewCover != $cover) {
+        if ($this->cover) {
             Storage::delete($cover);
             $cover = $this->cover->store('img/cover-konser');
         }

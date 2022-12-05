@@ -39,18 +39,16 @@ class Profile extends Component
     {
         $profilLama = User::find($userId)->image_profil;
         $avatars = $profilLama;
-        // dd($this->imgAvatars);
 
         $rules = [
             'name' => 'required',
             'email' => 'required|email:dns',
+            'noRek' => 'required',
         ];
         if ($this->imgProfil || $this->imgAvatars != $profilLama) {
             $rules['imgProfil'] = 'image|mimes:png,jpg|max:2048';
-            // dd('tidak sama');
         }
 
-        // dd('null isinya');
 
         $this->validate($rules);
 
@@ -70,6 +68,7 @@ class Profile extends Component
             'name' => $this->name,
             'email' => $this->email,
             'image_profil' => $avatars ?? null,
+            'no_rek' => $this->noRek,
         ]);
 
         if ($user) {

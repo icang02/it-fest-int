@@ -154,8 +154,18 @@
                 <small class="text-success fw-semibold">All Tours</small>
               @elsecan('pengelola')
                 <span class="fw-semibold d-block mb-1">Ticket</span>
+                @php
+                  $data = App\Models\TourPlace::where('id', auth()->user()->id)
+                      ->select('terjual')
+                      ->get()
+                      ->first();
+                @endphp
                 <h3 class="card-title mb-2">
-                  {{ App\Models\TourPlace::where('id', auth()->user()->id)->select('terjual')->get()->first()->terjual }}
+                  @if ($data == null)
+                    0
+                  @else
+                    {{ $data->terjual }}
+                  @endif
                 </h3>
                 <small class="text-success fw-semibold">Number of tickets sold</small>
               @endcan
