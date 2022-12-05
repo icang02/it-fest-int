@@ -3,12 +3,8 @@
   <div class="container">
     <div class="row flex-center mb-5">
       <div class="col-lg-8 text-center">
-        <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">Featured videos</h1>
+        <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">SultraSpot Video</h1>
         <hr class="mx-auto text-primary my-4" style="height:3px; width:70px;" />
-        <p class="mx-auto">Aliquam sodales vitae ex tincidunt consectetur. Etiam eleifend malesuada magna, at
-          imperdiet justo euismod eu. Aliquam vel imperdet mi, et convallis eros. Duis fermentum fringilla nisl at
-          vulputate. Nunc nec lorem faucibus, molestie nisi id, elementum sem. Sed vulputate tempor augue a
-          efficitur urna, ultrices eu. Duis vel turpis et arcu.</p>
       </div>
     </div>
     <div class="row flex-center">

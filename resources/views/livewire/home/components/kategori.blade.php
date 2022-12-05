@@ -5,10 +5,9 @@
       <div class="col-lg-8 text-center">
         <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">Kategori Wisata</h1>
         <hr class="mx-auto text-primary my-4" style="height:3px; width:70px;" />
-        <p class="mx-auto">Maecenas et eros non quam ultricies interdum. Proin ac dolor vel neque ullamcorper
-          blandit vitae et felis. Morbi ante urna, imperdiet vel neque vitae, porta ullamcorper metus. Quisque
-          bibendum venenatis eros sed commodo. Nullam ultrices tortor non diam ullamcorper auctor. In urna tellus,
-          auctor sit amet est ut, scelerisque volutpat diam.</p>
+        <p class="mx-auto"> Menurut data dari sultra.bps.go.id, pada tahun 2017 tercatat ada 666 tempat wisata yang ada di Sulawesi Tenggara,
+          yang terbagi menjadi kategori wisata pantai, pulau, pengunungan, air terjun dan masih banyak lagi.
+        </p>
       </div>
     </div>
     <div class="row h-100 flex-center">

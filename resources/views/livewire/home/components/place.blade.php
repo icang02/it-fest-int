@@ -6,9 +6,9 @@
         <h1 class="fw-bold fs-md-3 fs-xl-5">Tempat Wisata Unggulan</h1>
         <hr class="text-primary my-4 my-lg-3 my-xl-4" style="height:3px; width:70px;" />
         <p class="lh-lg">
-          Etiam facilisis, sapien quis porta dignissim, orci nisi pharetra dui, varius vehicula
-          ligula nulla sit amet lorem. Aenean in vestibulum quam. Cras commodo varius neque, non gravida diam
-          ultrices nec. Cras nulla mauris, fermentum nec libero in.
+          Bagi anda yang masih bingung mau liburan kemana, cobalah untuk menikmati 
+          tempat wisata yang sering dikunjungi oleh wisatawan lain. Inilah beberapa rekomendasi tempat 
+          wisata unggulan di Sulawesi Tenggara.
         </p>
 
         <a class="btn btn-lg btn-primary hover-top" onclick="window.location.href='{{ url('/semua-wisata') }}'"
