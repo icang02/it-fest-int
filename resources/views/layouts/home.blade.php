@@ -23,7 +23,7 @@
   <link href="{{ asset('rhea/vendors/plyr/plyr.css') }}" rel="stylesheet">
   <link href="{{ asset('rhea/css/theme.css') }}" rel="stylesheet" />
 
-  @if (env('APP_URL') == 'http://localhost:8000')
+  @if (env('APP_URL') == 'http://localhost')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   @else
     <link rel="stylesheet" href="{{ asset('build/assets/app.d86a1d90.css') }}">
