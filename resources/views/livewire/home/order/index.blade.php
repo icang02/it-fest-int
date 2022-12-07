@@ -73,7 +73,7 @@
                             placeholder="Cari order">
                         </div>
                       </div>
-                      <div class="col-lg-2 mb-3">
+                      {{-- <div class="col-lg-2 mb-3">
                         <button class="btn btn-secondary shadow" style="width: 100%">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-up" viewBox="0 0 16 16">
@@ -84,7 +84,7 @@
                           </svg>
                           Export
                         </button>
-                      </div>
+                      </div> --}}
                     </div>
                     <div class="row mt-3">
                       <div class="col">
@@ -444,7 +444,7 @@
                             placeholder=" Cari Order">
                         </div>
                       </div>
-                      <div class="col-lg-2 mb-3">
+                      {{-- <div class="col-lg-2 mb-3">
                         <button class="btn btn-secondary shadow" style="width: 100%">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-up" viewBox="0 0 16 16">
@@ -455,7 +455,7 @@
                           </svg>
                           Export
                         </button>
-                      </div>
+                      </div> --}}
                     </div>
                     <div class="row mt-3">
                       <div class="col">
@@ -564,7 +564,7 @@
                             placeholder=" Cari Order">
                         </div>
                       </div>
-                      <div class="col-lg-2 mb-3">
+                      {{-- <div class="col-lg-2 mb-3">
                         <button class="btn btn-secondary shadow" style="width: 100%">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-up" viewBox="0 0 16 16">
@@ -575,7 +575,7 @@
                           </svg>
                           Export
                         </button>
-                      </div>
+                      </div> --}}
                     </div>
                     <div class="row mt-2">
                       <div class="col">
