@@ -1,13 +1,12 @@
 Cara install :
-1. copy file .env-example dan rename menjadi .env (db: it_fest_int)
+1. copy file .env-example. rename menjadi .env (nama db: it_fest_int)
 2. composer install
-3. composer require livewire/livewire
-4. composer require barryvdh/laravel-dompdf
-5. php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
-6. php artisan key:generate
-7. php artisan serve
-8. php artisan migrate:fresh --seed
-9. php artisan storage:link
+3. npm install
+4. php artisan key:generate
+5. npm run build
+6. php artisan storage:link
+7. php artisan migrate:fresh --seed
+8. php artisan serve
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
