@@ -48,7 +48,7 @@
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="{{ asset('sneat/js/config.js') }}"></script>
 
-  @if (env('APP_URL') == 'http://localhost:8000')
+  @if (env('APP_URL') == 'http://localhost')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   @else
     <link rel="stylesheet" href="{{ asset('build/assets/app.d86a1d90.css') }}">
